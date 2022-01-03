@@ -14,7 +14,7 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @GetMapping("/doctors")
+    @GetMapping("/persons")
     public List<Person> getPersons(){
         return service.getPersons();
     }
