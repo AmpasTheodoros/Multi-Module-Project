@@ -25,9 +25,10 @@ public class PersonService {
 
     @PostConstruct
     public void initDoctor(){
+        List<String> commentList = List.of("sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa");
         repository.saveAll(Stream.of
-                        (new Person(101,"John","Cardiac"),
-                                new Person(102,"peter","eye"))
+                        (new Person(101,"John","Cardiac",commentList),
+                                new Person(102,"peter","eye",commentList))
                 .collect(Collectors.toList()));
     }
 
