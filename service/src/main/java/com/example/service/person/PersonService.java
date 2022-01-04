@@ -5,6 +5,8 @@ import com.example.mailservice.EmailService;
 import com.example.model.person.Person;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -46,5 +48,18 @@ public class PersonService {
     public String deletePerson(int id) {
         repository.deleteById(id);
         return "person deleted with id :" + id;
+    }
+
+    public org.springframework.http.ResponseEntity<Person> updatePerson(int id, Person person) {
+        Optional<Person> personData = repository.findById(id);
+
+        if (personData.isPresent()) {
+            Person _person = personData.get();
+            _person.setName(person.getName());
+            _person.setSpecialist(person.getSpecialist());
+            return new ResponseEntity<>(repository.save(_person), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
