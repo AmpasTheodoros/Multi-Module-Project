@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,5 +32,19 @@ public class PersonService {
     public List<Person> getPersons(){
         service.sendEMail();
         return repository.findAll();
+    }
+
+    public String savePerson(Person person) {
+        repository.save(person);
+        return "Added person with id : " + person.getId();
+    }
+
+    public Optional<Person> getPerson(int id) {
+        return repository.findById(id);
+    }
+
+    public String deletePerson(int id) {
+        repository.deleteById(id);
+        return "person deleted with id :" + id;
     }
 }
