@@ -54,4 +54,12 @@ public class PersonController {
         System.out.println(personList);
         return "people";
     }
+
+    @GetMapping("/peopleFiltered")
+    public String getPeopleFiltered(Model model){
+        List<Person> personList = service.getPersons();
+        model.addAttribute("people",personList);
+        System.out.println(personList);
+        return "peopleFiltered";
+    }
 }
