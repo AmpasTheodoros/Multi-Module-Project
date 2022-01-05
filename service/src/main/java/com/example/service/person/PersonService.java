@@ -25,10 +25,10 @@ public class PersonService {
 
     @PostConstruct
     public void initDoctor(){
-        List<String> commentList = List.of("sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa");
+//        List<String> commentList = List.of("sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa");
         repository.saveAll(Stream.of
-                        (new Person(101,"John","Cardiac",commentList),
-                                new Person(102,"peter","eye",commentList))
+                        (new Person("John","Cardiac","sas"),
+                                new Person("peter","eye","mam"))
                 .collect(Collectors.toList()));
     }
 
@@ -42,22 +42,22 @@ public class PersonService {
         return "Added person with id : " + person.getId();
     }
 
-    public Optional<Person> getPerson(int id) {
+    public Optional<Person> getPerson(String id) {
         return repository.findById(id);
     }
 
-    public String deletePerson(int id) {
+    public String deletePerson(String id) {
         repository.deleteById(id);
         return "person deleted with id :" + id;
     }
 
-    public org.springframework.http.ResponseEntity<Person> updatePerson(int id, Person person) {
+    public org.springframework.http.ResponseEntity<Person> updatePerson(String id, Person person) {
         Optional<Person> personData = repository.findById(id);
 
         if (personData.isPresent()) {
             Person _person = personData.get();
-            _person.setName(person.getName());
-            _person.setSpecialist(person.getSpecialist());
+            _person.setFirstName(person.getFirstName());
+            _person.setLastName(person.getLastName());
             return new ResponseEntity<>(repository.save(_person), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

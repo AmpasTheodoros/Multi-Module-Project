@@ -31,31 +31,24 @@ public class PersonController {
     }
 
     @GetMapping("/findAllPersons/{id}")
-    public Optional<Person> getPerson(@PathVariable int id){
+    public Optional<Person> getPerson(@PathVariable String id){
         return service.getPerson(id);
     }
 
     //Den ksero an douleui
     @DeleteMapping("/delete/{id}")
-    public String deletePerson(@PathVariable int id) {
+    public String deletePerson(@PathVariable String id) {
         return service.deletePerson(id);
     }
 
     //Den ksero an douleui
     @PutMapping("/updatePerson/{id}")
-    public ResponseEntity<Person> updatePerson(@PathVariable int id, @RequestBody Person person) {
+    public ResponseEntity<Person> updatePerson(@PathVariable String id, @RequestBody Person person) {
         return service.updatePerson(id,person);
     }
 
     @GetMapping("/people")
     public String getPeople(Model model){
-//        model.addAttribute("something", "controller");
-//        model.addAttribute("people", Arrays.asList(
-//                new Person(103,"nicolas","ff"),
-//                new Person(104,"John","Wick"),
-//                new Person(105,"Rdj","ew"),
-//                new Person(106,"teo","ds")
-//                ));
         List<Person> personList = service.getPersons();
         model.addAttribute("people",personList);
         System.out.println(personList);

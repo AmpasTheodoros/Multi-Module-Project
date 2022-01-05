@@ -1,14 +1,11 @@
 package com.example.model.person;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.util.List;
 
 @Data
 @Document
@@ -17,8 +14,20 @@ import java.util.List;
 @ToString
 public class Person {
     @Id
-    private int id;
-    private String name;
-    private String specialist;
-    private List<String> comment;
+    private String id;
+
+    @Field("firstName")
+    private String firstName;
+
+    @Field("lastName")
+    private String lastName;
+
+    @Field("Comment")
+    private String comment;
+
+    public Person(String firstName, String lastName, String comment) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.comment = comment;
+    }
 }
