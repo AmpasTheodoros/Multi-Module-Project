@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org"  >
+<html lang="en" xmlns:th="http://thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org ">
 <head th:include="fragments/layout :: head(~{:: title})">
     <meta charset="UTF-8">
     <title>People</title>
@@ -8,12 +9,12 @@
 </head>
 
 <body>
-
-<div th:insert="templates/navigation :: navigation"></div>
-
+<div th:replace="fragments/layout :: header"></div>
 <h1 th:text="${something}"></h1>
+
 <img style="height: 30px;"
      src="https://www.kariera.gr/cdn/assets/logos/gr_logo-858250c22f84a841c1ec6a47eda26bcaf68224860a3c01d76ba3ec7dd0ed62c0.png"/>
+
 <table class="table table-dark table-hover">
     <thead>
     <tr>

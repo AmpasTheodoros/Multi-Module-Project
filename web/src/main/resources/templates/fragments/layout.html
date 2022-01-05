@@ -14,14 +14,11 @@
 
 <body>
 <!--/* Header fragment */-->
-<div th:fragment="header(breadcrumb)">
+<div th:fragment="header">
 
     <nav class="navbar navbar-inverse navbar-fixed-top" th:replace="fragments/navigation :: navigation">
     </nav>
 
-    <ol class="breadcrumb container" th:replace="${breadcrumb}">
-        <li><a href="#">Fake</a></li>
-    </ol>
 
 </div>
 
