@@ -1,7 +1,6 @@
 package com.example.service.person;
 
 import com.example.dao.person.PersonRepository;
-import com.example.mailservice.EmailService;
 import com.example.model.person.Person;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,6 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
     @Autowired
-    private EmailService service;
 
     @PostConstruct
     public void initDoctor(){
@@ -35,7 +33,6 @@ public class PersonService {
     }
 
     public List<Person> getPersons(){
-        service.sendEMail();
         return repository.findAll();
     }
 
