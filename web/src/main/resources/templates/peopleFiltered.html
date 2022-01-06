@@ -11,16 +11,19 @@
 <table class="table table-dark table-hover">
     <thead>
     <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Comment</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Comment</th>
+        <th>Edit</th>
+        <th>Delete</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="person: ${people}">
+    <tr th:each="person : ${people.iterator()}">
         <td th:text="${person.firstName}"></td>
         <td th:text="${person.lastName}"></td>
         <td th:text="${person.comment}"></td>
+        <td><a th:href="@{/peopleFiltered/update/{id}(id=${person.id})}">Edit</a></td>
         <td><a th:href="@{/delete/{id}(id=${person.id})}">Delete</a></td>
     </tr>
     </tbody>
