@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -46,10 +47,20 @@ public class PersonController {
         return service.deletePerson(id);
     }
 
-    //Den ksero an douleui
-    @PutMapping("/updatePerson/{id}")
-    public ResponseEntity<Person> updatePerson(@PathVariable String id, @RequestBody Person person) {
-        return service.updatePerson(id,person);
+//    //Den ksero an douleui
+//    @PutMapping("/updatePerson/{id}")
+//    public ResponseEntity<Person> updatePerson(@PathVariable String id, @RequestBody Person person) {
+//        return service.updatePerson(id,person);
+//    }
+    @GetMapping("/peopleFiltered/update/{id}")
+    public String updatePerson(@PathVariable("id") String id, Model model) {
+        return service.updatePerson(id,model);
+    }
+
+    @PostMapping("/peopleFiltered/update/{id}")
+    public String updateCar(@PathVariable("id") String id, Person person,
+                            BindingResult result, Model model) {
+        return service.updatePerson(id,person,result,model);
     }
 
     @GetMapping("/people")

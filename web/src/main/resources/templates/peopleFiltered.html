@@ -23,6 +23,7 @@
         <td th:text="${person.firstName}"></td>
         <td th:text="${person.lastName}"></td>
         <td th:text="${person.comment}"></td>
+        <td><a th:href="@{/peopleFiltered/update/{id}(id=${person.id})}">Edit</a></td>
         <td><a th:href="@{/delete/{id}(id=${person.id})}">Delete</a></td>
     </tr>
     </tbody>

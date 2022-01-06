@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<!--/* Title of this template will be passed to the head fragment along with custom links and scripts */-->
+<head th:include="fragments/layout :: head(~{:: title})">
+  <title>Add Car</title>
+  <style>
+    form {
+      width: 100%;
+      max-width: 330px;
+      padding: 15px;
+      margin: 0 auto;
+    }
+    .form .checkbox {
+      font-weight: 400;
+    }
+    form .form-control {
+      position: relative;
+      box-sizing: border-box;
+      height: auto;
+      padding: 10px;
+      font-size: 16px;
+    }
+    form .form-control:focus {
+      z-index: 2;
+    }
+    form input {
+      margin-bottom: -1px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  </style>
+</head>
+<body>
+<!--/* Insert content fragment with content of the element with id = 'cars-list' */-->
+  <div id="add-car" class="row" >
+    <form
+            th:action="@{/peopleFiltered/update/{id}(id=${person.id})}"
+            th:object="${person}"
+            method="post">
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" th:field="*{firstName}" id="firstName" placeholder="firstName" class="form-control">
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">lastName</label>
+        <input type="text" th:field="*{lastName}" id="lastName" placeholder="Serial Number" class="form-control">
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="comment">comment</label>
+        <input type="text" th:field="*{comment}" id="comment" placeholder="comment" class="form-control">
+        <span th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></span>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-5">Update</button>
+    </form>
+  </div>
+
+</body>
+</html>
