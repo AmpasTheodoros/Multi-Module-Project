@@ -25,6 +25,8 @@ public class Person {
     @Field("Comment")
     private String comment;
 
+    private String maker;
+
     public Person(String firstName, String lastName, String comment) {
         this.firstName = firstName;
         this.lastName = lastName;

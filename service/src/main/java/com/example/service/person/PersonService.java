@@ -47,8 +47,12 @@ public class PersonService {
     }
 
     public String deletePerson(String id) {
-        repository.deleteById(id);
-        return "person deleted with id :" + id;
+        Person person = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid car Id:" + id));
+        repository.delete(person);
+        return "redirect:/peopleFiltered";
+//        repository.deleteById(id);
+//        return "person deleted with id :" + id;
     }
 
     public org.springframework.http.ResponseEntity<Person> updatePerson(String id, Person person) {
