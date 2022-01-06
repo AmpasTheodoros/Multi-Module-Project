@@ -22,14 +22,22 @@ public class Person {
     @Field("lastName")
     private String lastName;
 
+    @Field("address")
+    private String address;
+
+    @Field("email")
+    private String email;
+
     @Field("Comment")
     private String comment;
 
     private String maker;
 
-    public Person(String firstName, String lastName, String comment) {
+    public Person(String firstName, String lastName, String address, String email, String comment) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
+        this.email = email;
         this.comment = comment;
     }
 }
