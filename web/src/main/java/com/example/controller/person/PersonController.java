@@ -83,12 +83,21 @@ public class PersonController {
         System.out.println(personList);
         return "peopleFiltered";
     }
+    @GetMapping("/people/new")
+    public String createPersonForm(Model model){
+        //create person object to hold person form data
+        Person person = new Person();
+        model.addAttribute("person",person);
+        return "create_person";
 
-//    @PostMapping("/peopleFiltered")
-//    public Object searchCommentSubmit(
-//            @ModelAttribute PersonSearch searchModel) {
-//        return "redirect:/peopleFiltered?searchByComment=" + searchModel.getComment();
-//    }
+    }
+    @PostMapping("/people")
+    public String savePeople(@ModelAttribute("person") Person person) {
+        PersonService.savePerson(person);
+        return "redirect:/people";
+    }
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -1,7 +1,6 @@
 package com.example.service.person;
 
 import com.example.dao.person.PersonRepository;
-import com.example.mailservice.EmailService;
 import com.example.model.person.Person;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,27 +21,24 @@ public class PersonService {
 
     @Autowired
     private PersonRepository repository;
-    @Autowired
-    private EmailService service;
 
     @PostConstruct
-    public void initDoctor(){
+    public void initPerson(){
 //        List<String> commentList = List.of("sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa","sas", "sasasa");
         repository.saveAll(Stream.of
-                        (new Person("John","Cardiac","sas"),
-                                new Person("peter","eye","mam"))
+                        (new Person("John","Papadopoulos","sas"),
+                                new Person("peter","Papadopoulos","mam"))
                 .collect(Collectors.toList()));
     }
 
     public List<Person> getPersons(){
-        service.sendEMail();
         return repository.findAll();
     }
-
-    public String savePerson(Person person) {
-        repository.save(person);
-        return "Added person with id : " + person.getId();
-    }
+//
+//    public static String savePerson(Person person) {
+//        repository.save(person);
+//        return "Added person with id : " + person.getId();
+//    }
 
     public Optional<Person> getPerson(String id) {
         return repository.findById(id);
@@ -50,7 +46,7 @@ public class PersonService {
 
     public String deletePerson(String id) {
         Person person = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid car Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
         repository.delete(person);
         return "redirect:/peopleFiltered";
 //        repository.deleteById(id);
@@ -59,9 +55,9 @@ public class PersonService {
 
     public String updatePerson(String id, Model model) {
         Person person = repository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid car Id:" + id));
+                .orElseThrow(() -> new IllegalArgumentException("Invalid person Id:" + id));
 
-        model.addAttribute("car", person);
+        model.addAttribute("person", person);
         return "update-person";
     }
 
@@ -73,6 +69,11 @@ public class PersonService {
 
         repository.save(person);
         return "redirect:/peopleFiltered";
+    }
+
+    public static String savePerson(Person person) {
+        return "Added person with id : " + person.getId();
+
     }
 
 //    public org.springframework.http.ResponseEntity<Person> updatePerson(String id, Person person) {
